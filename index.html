@@ -2,31 +2,329 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Гид по подкастам в России — оборудование, софт, дистрибуция</title>
-    <meta name="description" content="Полное руководство по запуску подкаста в России. Оборудование, софт, дистрибуция, монетизация.">
+    <meta name="description" content="Полное руководство по запуску подкаста в России. Оборудование, софт, дистрибуция, монетизация. Студия подкастов HellaGoodPro.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{
+            font-family:'Roboto Condensed',sans-serif;
+            background:linear-gradient(170deg,#fdfcfa 0%,#f5f0ea 40%,#ede6dd 100%);
+            color:#1a1a1a;
+            min-height:100vh;
+            overflow-x:hidden;
+        }
+        
+        .wall-wrap{
+            position:relative;
+            width:100%;
+            height:100vh;
+            min-height:600px;
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+        }
+        .text-wall{
+            position:absolute;
+            inset:0;
+            overflow:hidden;
+            opacity:0.10;
+            pointer-events:none;
+        }
+        .wall-line{
+            font-size:12px;
+            line-height:2.4;
+            letter-spacing:1.5px;
+            text-transform:uppercase;
+            white-space:nowrap;
+            color:#8a7a6a;
+            font-family:'Roboto Condensed',sans-serif;
+            font-weight:400;
+            display:flex;
+            width:fit-content;
+            animation:driftL 50s linear infinite;
+        }
+        .wall-line:nth-child(even){animation-name:driftR;animation-duration:55s}
+        .wall-line:nth-child(3n){animation-duration:45s}
+        .wall-line:nth-child(4n){animation-duration:60s}
+        .wall-line .accent{color:#dc2626;font-weight:700}
+        @keyframes driftL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+        @keyframes driftR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+        
+        .grain{
+            position:fixed;
+            inset:0;
+            pointer-events:none;
+            z-index:100;
+            opacity:0.025;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        
+        .logo-center{
+            position:relative;
+            z-index:10;
+            width:140px;
+            height:140px;
+            margin-bottom:32px;
+            filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2)) drop-shadow(0 0 40px rgba(253,252,250,0.8));
+            animation:fadeInDown 1s ease-out;
+        }
+        .logo-center img{width:100%;height:100%;object-fit:contain}
+        
+        .hero-content{
+            position:relative;
+            z-index:10;
+            text-align:center;
+            max-width:680px;
+            padding:0 24px;
+            animation:fadeInUp 1s ease-out 0.3s both;
+        }
+        .hero-content h1{
+            font-family:'Oswald',sans-serif;
+            font-size:clamp(36px,5vw,56px);
+            font-weight:700;
+            line-height:1.1;
+            letter-spacing:-1px;
+            text-transform:uppercase;
+            color:#1a1a1a;
+            text-shadow:0 2px 20px rgba(255,255,255,0.8);
+            margin-bottom:16px;
+        }
+        .hero-content .subtitle{
+            font-family:'Roboto Condensed',sans-serif;
+            font-size:15px;
+            font-weight:400;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            color:#5a5a5a;
+            line-height:1.6;
+            margin-bottom:8px;
+        }
+        .hero-content .soul{
+            font-family:'Oswald',sans-serif;
+            font-size:13px;
+            font-weight:500;
+            letter-spacing:3px;
+            text-transform:uppercase;
+            color:#dc2626;
+            opacity:0.85;
+            margin-bottom:40px;
+        }
+        
+        .cta-wrap{
+            position:relative;
+            z-index:10;
+            margin-top:8px;
+            animation:fadeInUp 1s ease-out 0.6s both;
+        }
+        .cta-btn{
+            display:inline-block;
+            text-decoration:none;
+            padding:18px 36px;
+            border:2px solid #1a1a1a;
+            border-radius:60px;
+            font-family:'Roboto Condensed',sans-serif;
+            font-size:13px;
+            font-weight:700;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            color:#1a1a1a;
+            background:transparent;
+            transition:all 0.35s ease;
+            cursor:pointer;
+        }
+        .cta-btn:hover{
+            background:#1a1a1a;
+            color:#fdfcfa;
+            transform:translateY(-2px);
+            box-shadow:0 8px 24px rgba(0,0,0,0.15);
+        }
+        .cta-btn .accent{color:#dc2626;transition:color 0.35s ease}
+        .cta-btn:hover .accent{color:#ff4444}
+        
+        .links-section{
+            position:relative;
+            z-index:10;
+            padding:60px 24px 80px;
+            max-width:800px;
+            margin:0 auto;
+            text-align:center;
+            animation:fadeInUp 1s ease-out 0.9s both;
+        }
+        .links-section h2{
+            font-family:'Oswald',sans-serif;
+            font-size:24px;
+            font-weight:700;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            color:#1a1a1a;
+            margin-bottom:32px;
+        }
+        .link-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:16px;
+        }
+        .link-card{
+            display:block;
+            text-decoration:none;
+            padding:24px 20px;
+            background:rgba(255,255,255,0.6);
+            border:1px solid rgba(138,122,106,0.15);
+            border-radius:12px;
+            transition:all 0.3s ease;
+        }
+        .link-card:hover{
+            background:rgba(255,255,255,0.9);
+            border-color:rgba(220,38,38,0.3);
+            transform:translateY(-3px);
+            box-shadow:0 8px 24px rgba(0,0,0,0.08);
+        }
+        .link-card .label{
+            font-family:'Oswald',sans-serif;
+            font-size:14px;
+            font-weight:700;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            color:#1a1a1a;
+            margin-bottom:6px;
+        }
+        .link-card .desc{
+            font-family:'Roboto Condensed',sans-serif;
+            font-size:12px;
+            font-weight:400;
+            letter-spacing:0.5px;
+            color:#8a7a6a;
+            line-height:1.5;
+        }
+        
+        .site-footer{
+            position:relative;
+            z-index:10;
+            text-align:center;
+            padding:40px 24px;
+            border-top:1px solid rgba(138,122,106,0.1);
+        }
+        .site-footer p{
+            font-family:'Roboto Condensed',sans-serif;
+            font-size:12px;
+            letter-spacing:1px;
+            color:#8a7a6a;
+        }
+        .site-footer a{
+            color:#dc2626;
+            text-decoration:none;
+            font-weight:700;
+        }
+        .site-footer a:hover{text-decoration:underline}
+        
+        @keyframes fadeInDown{
+            from{opacity:0;transform:translateY(-20px)}
+            to{opacity:1;transform:translateY(0)}
+        }
+        @keyframes fadeInUp{
+            from{opacity:0;transform:translateY(30px)}
+            to{opacity:1;transform:translateY(0)}
+        }
+    </style>
 </head>
 <body>
-    <h1>Гид по подкастам в России</h1>
-    <p>Полное руководство по запуску и развитию подкаста: 
-    оборудование, программное обеспечение, площадки для публикации, 
-    стратегии монетизации.</p>
+    <div class="grain"></div>
     
-    <p>Материал подготовлен командой 
-    <a href="https://hellagood.pro">HellaGoodPro</a> — 
-    <a href="https://hellagood.pro/studiya-podkastov-moskva">студия подкастов в Москве</a> 
-    с опытом записи 250+ выпусков.</p>
+    <div class="wall-wrap">
+        <div class="text-wall" id="textWall"></div>
+        
+        <div class="logo-center">
+            <img src="https://hellagood.pro/wp-content/uploads/2026/05/Transparent-Square-Logo-HGPRO.png" alt="HellaGoodPro — студия подкастов Москва" loading="eager">
+        </div>
+        
+        <div class="hero-content">
+            <h1>Гид по подкастам<br>в России</h1>
+            <p class="subtitle">Оборудование &middot; Софт &middot; Дистрибуция &middot; Монетизация</p>
+            <p class="soul">ПРОДАЛИ ДУШУ ЗА КАЧЕСТВО</p>
+        </div>
+        
+        <div class="cta-wrap">
+            <a class="cta-btn" href="https://hellagood.pro/studiya-podkastov-moskva">
+                <span class="accent">HellaGoodPro</span> — студия подкастов в Москве
+            </a>
+        </div>
+    </div>
     
-    <h2>Содержание гида</h2>
+    <div class="links-section">
+        <h2>Разделы гида</h2>
+        <div class="link-grid">
+            <a class="link-card" href="https://hellagood.pro/chto-takoe-podkast">
+                <div class="label">Что такое подкаст</div>
+                <div class="desc">История, определение, форматы, типы контента</div>
+            </a>
+            <a class="link-card" href="https://hellagood.pro/podkast-cena">
+                <div class="label">Сколько стоит подкаст</div>
+                <div class="desc">Калькулятор стоимости записи и монтажа</div>
+            </a>
+            <a class="link-card" href="https://hellagood.pro/oborudovanie-dlya-podkasta">
+                <div class="label">Оборудование</div>
+                <div class="desc">Микрофоны, интерфейсы, камеры, свет, софт</div>
+            </a>
+            <a class="link-card" href="https://hellagood.pro/studiya-podkastov-moskva">
+                <div class="label">Студия в Москве</div>
+                <div class="desc">Запись под ключ, аренда, цены, бронь</div>
+            </a>
+        </div>
+    </div>
     
-    <p><a href="https://hellagood.pro/chto-takoe-podkast">Что такое подкаст</a> — 
-    история, определение, форматы.</p>
-    
-    <p><a href="https://hellagood.pro/podkast-cena">Сколько стоит подкаст</a> — 
-    калькулятор стоимости записи и монтажа.</p>
-    
-    <footer>
-        <p>Подробнее: <a href="https://hellagood.pro">hellagood.pro</a> — 
-        запись подкастов в Москве под ключ.</p>
+    <footer class="site-footer">
+        <p>Материал подготовлен <a href="https://hellagood.pro">HellaGoodPro</a> — студия подкастов в Москве &middot; 250+ выпусков</p>
     </footer>
+    
+    <script>
+        const messages = [
+            {t:"HELLAGOODPRO — ЧЕРТОВСКИ КРУТАЯ СТУДИЯ ПОДКАСТОВ В МОСКВЕ",k:"КРУТАЯ"},
+            {t:"ЧТО ЕСЛИ СЕГОДНЯ — ТОТ САМЫЙ ДЕНЬ?",k:"ТОТ САМЫЙ"},
+            {t:"ЧТО ЕСЛИ ВЫ — ГЕНИАЛЬНЫ, А МЫ — БЕЗУПРЕЧНЫ?",k:"ГЕНИАЛЬНЫ"},
+            {t:"ЧТО ЕСЛИ МЫ ПРЕВРАЩАЕМ ВАШУ ЭКСПЕРТНОСТЬ В БЕЗУПРЕЧНЫЙ ВИЗУАЛ?",k:"ВИЗУАЛ"},
+            {t:"ЧТО ЕСЛИ ГОТОВЫЙ ВЫПУСК У ВАС НА РУКАХ ЧЕРЕЗ 2–24 ЧАСА?",k:"2–24"},
+            {t:"ЧТО ЕСЛИ АУДИТОРИЯ РАСТЁТ ПОТОМУ ЧТО ВАС СТАЛО ЛУЧШЕ СЛЫШНО?",k:"ЛУЧШЕ"},
+            {t:"ЧТО ЕСЛИ ВЫ КОНТРОЛИРУЕТЕ КАЖДЫЙ РУБЛЬ В СМЕТЕ?",k:"СМЕТЕ"},
+            {t:"ЧТО ЕСЛИ РЕЖИССЁР И МОНТАЖ УЖЕ ВХОДЯТ В ЦЕНУ?",k:"ВХОДЯТ"},
+            {t:"НИКАКИХ СКРЫТЫХ ПЛАТЕЖЕЙ. ЦЕНА ПРОЗРАЧНА, КАК ЛЁД БАЙКАЛА.",k:"ПРОЗРАЧНА"},
+            {t:"ВАШ БЮДЖЕТ = ТОЛЬКО ЧАСЫ + КАМЕРЫ.",k:"ЧАСЫ"},
+            {t:"ПРАВИЛО 15 МИНУТ В ВАШУ ПОЛЬЗУ: 2 Ч 15 МИН = 2 Ч.",k:"15 МИНУТ"},
+            {t:"БАЗОВЫЙ КОМПЛЕКТ — АБСОЛЮТНЫЙ МИНИМУМ ДЛЯ МАКСИМУМА КАЧЕСТВА.",k:"МАКСИМУМА"},
+            {t:"МЫР ПОЛОН ИСТОРИЙ. HELLAGOODPRO — ИДЕАЛЬНЫЙ ПРОВОДНИК.",k:"ПРОВОДНИК"},
+            {t:"ВЫ ТВОРИТЕ ИСТОРИЮ. МЫ — БЕЗУПРЕЧНЫЙ ИНСТРУМЕНТ.",k:"ИНСТРУМЕНТ"},
+            {t:"ВЫ — НА СУТИ. МЫ — НА СВЕТЕ, КАДРЕ, ЗВУКЕ.",k:"СВЕТЕ"},
+            {t:"ВАША ЗАДАЧА — БЫТЬ СОБОЙ. НАША — ЧТОБЫ РЕЗУЛЬТАТ БЫЛ ЧЕРТОВСКИ ВКУСНО.",k:"ВКУСНО"},
+            {t:"ЧТО ЕСЛИ ХОЛСТ ПОД ВАШЕ ВИДЕО УЖЕ ГОТОВ?",k:"ГОТОВ"},
+            {t:"ВРЕМЯ ТВОРИТЬ ИСТОРИЮ. ЗАНАВЕС.",k:"ЗАНАВЕС"},
+            {t:"HELLAGOODPRO. МОСКВА. ВАША СТУДИЯ.",k:"СТУДИЯ"},
+            {t:"ЧТО ЕСЛИ ВСЕ ЭТО В ПРЯМОМ ЭФИРЕ?",k:"ПРЯМОМ"}
+        ];
+        
+        function highlight(text, kw){
+            return text.replace(kw, '<span class="accent">'+kw+'</span>');
+        }
+        
+        const wall = document.getElementById('textWall');
+        for(let i = 0; i < 18; i++){
+            const start = (i * 2) % messages.length;
+            const phrases = [];
+            for(let j = 0; j < 2; j++){
+                const m = messages[(start + j) % messages.length];
+                phrases.push(highlight(m.t, m.k));
+            }
+            const segment = phrases.join('  &bull;  ') + '  &bull;  ';
+            const line = document.createElement('div');
+            line.className = 'wall-line';
+            line.innerHTML = segment.repeat(4);
+            wall.appendChild(line);
+        }
+    </script>
 </body>
 </html>
