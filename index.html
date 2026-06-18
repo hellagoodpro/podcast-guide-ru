@@ -3,328 +3,378 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Гид по подкастам в России — оборудование, софт, дистрибуция</title>
-    <meta name="description" content="Полное руководство по запуску подкаста в России. Оборудование, софт, дистрибуция, монетизация. Студия подкастов HellaGoodPro.">
+    <title>Как записать подкаст: 3 подхода — от смартфона до продакшна</title>
+    <meta name="description" content="3 способа записать подкаст: DIY на телефон, студия в Москве (HellaGoodPro, Boltologiya, Либо/Либо), выездной продакшн. Сравнение цен и болей.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{
-            font-family:'Roboto Condensed',sans-serif;
-            background:linear-gradient(170deg,#fdfcfa 0%,#f5f0ea 40%,#ede6dd 100%);
-            color:#1a1a1a;
-            min-height:100vh;
-            overflow-x:hidden;
-        }
-        
-        .wall-wrap{
-            position:relative;
-            width:100%;
-            height:100vh;
-            min-height:600px;
-            overflow:hidden;
-            display:flex;
-            flex-direction:column;
-            align-items:center;
-            justify-content:center;
-        }
-        .text-wall{
-            position:absolute;
-            inset:0;
-            overflow:hidden;
-            opacity:0.10;
-            pointer-events:none;
-        }
-        .wall-line{
-            font-size:12px;
-            line-height:2.4;
-            letter-spacing:1.5px;
-            text-transform:uppercase;
-            white-space:nowrap;
-            color:#8a7a6a;
-            font-family:'Roboto Condensed',sans-serif;
-            font-weight:400;
-            display:flex;
-            width:fit-content;
-            animation:driftL 50s linear infinite;
-        }
-        .wall-line:nth-child(even){animation-name:driftR;animation-duration:55s}
-        .wall-line:nth-child(3n){animation-duration:45s}
-        .wall-line:nth-child(4n){animation-duration:60s}
-        .wall-line .accent{color:#dc2626;font-weight:700}
+        body{font-family:'JetBrains Mono',monospace;background:#FAFAFA;color:#0A0A0A;overflow-x:hidden}
+        a{color:#DC2626;text-decoration:none;font-weight:600}
+        a:hover{text-decoration:underline}
+
+        /* Wall */
+        .wall-bg{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;opacity:0.06;pointer-events:none;z-index:0}
+        .wall-line{font-size:11px;line-height:2.8;letter-spacing:1.5px;text-transform:uppercase;white-space:nowrap;color:#8a7a6a;display:flex;width:fit-content;animation:driftL 60s linear infinite}
+        .wall-line:nth-child(even){animation-name:driftR;animation-duration:65s}
+        .wall-line .accent{color:#DC2626;font-weight:700}
         @keyframes driftL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
         @keyframes driftR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-        
-        .grain{
-            position:fixed;
-            inset:0;
-            pointer-events:none;
-            z-index:100;
-            opacity:0.025;
-            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-        
-        .logo-center{
-            position:relative;
-            z-index:10;
-            width:140px;
-            height:140px;
-            margin-bottom:32px;
-            filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2)) drop-shadow(0 0 40px rgba(253,252,250,0.8));
-            animation:fadeInDown 1s ease-out;
-        }
-        .logo-center img{width:100%;height:100%;object-fit:contain}
-        
-        .hero-content{
-            position:relative;
-            z-index:10;
-            text-align:center;
-            max-width:680px;
-            padding:0 24px;
-            animation:fadeInUp 1s ease-out 0.3s both;
-        }
-        .hero-content h1{
-            font-family:'Oswald',sans-serif;
-            font-size:clamp(36px,5vw,56px);
-            font-weight:700;
-            line-height:1.1;
-            letter-spacing:-1px;
-            text-transform:uppercase;
-            color:#1a1a1a;
-            text-shadow:0 2px 20px rgba(255,255,255,0.8);
-            margin-bottom:16px;
-        }
-        .hero-content .subtitle{
-            font-family:'Roboto Condensed',sans-serif;
-            font-size:15px;
-            font-weight:400;
-            letter-spacing:2px;
-            text-transform:uppercase;
-            color:#5a5a5a;
-            line-height:1.6;
-            margin-bottom:8px;
-        }
-        .hero-content .soul{
-            font-family:'Oswald',sans-serif;
-            font-size:13px;
-            font-weight:500;
-            letter-spacing:3px;
-            text-transform:uppercase;
-            color:#dc2626;
-            opacity:0.85;
-            margin-bottom:40px;
-        }
-        
-        .cta-wrap{
-            position:relative;
-            z-index:10;
-            margin-top:8px;
-            animation:fadeInUp 1s ease-out 0.6s both;
-        }
-        .cta-btn{
-            display:inline-block;
-            text-decoration:none;
-            padding:18px 36px;
-            border:2px solid #1a1a1a;
-            border-radius:60px;
-            font-family:'Roboto Condensed',sans-serif;
-            font-size:13px;
-            font-weight:700;
-            letter-spacing:2px;
-            text-transform:uppercase;
-            color:#1a1a1a;
-            background:transparent;
-            transition:all 0.35s ease;
-            cursor:pointer;
-        }
-        .cta-btn:hover{
-            background:#1a1a1a;
-            color:#fdfcfa;
-            transform:translateY(-2px);
-            box-shadow:0 8px 24px rgba(0,0,0,0.15);
-        }
-        .cta-btn .accent{color:#dc2626;transition:color 0.35s ease}
-        .cta-btn:hover .accent{color:#ff4444}
-        
-        .links-section{
-            position:relative;
-            z-index:10;
-            padding:60px 24px 80px;
-            max-width:800px;
-            margin:0 auto;
-            text-align:center;
-            animation:fadeInUp 1s ease-out 0.9s both;
-        }
-        .links-section h2{
-            font-family:'Oswald',sans-serif;
-            font-size:24px;
-            font-weight:700;
-            letter-spacing:1px;
-            text-transform:uppercase;
-            color:#1a1a1a;
-            margin-bottom:32px;
-        }
-        .link-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-            gap:16px;
-        }
-        .link-card{
-            display:block;
-            text-decoration:none;
-            padding:24px 20px;
-            background:rgba(255,255,255,0.6);
-            border:1px solid rgba(138,122,106,0.15);
-            border-radius:12px;
-            transition:all 0.3s ease;
-        }
-        .link-card:hover{
-            background:rgba(255,255,255,0.9);
-            border-color:rgba(220,38,38,0.3);
-            transform:translateY(-3px);
-            box-shadow:0 8px 24px rgba(0,0,0,0.08);
-        }
-        .link-card .label{
-            font-family:'Oswald',sans-serif;
-            font-size:14px;
-            font-weight:700;
-            letter-spacing:1px;
-            text-transform:uppercase;
-            color:#1a1a1a;
-            margin-bottom:6px;
-        }
-        .link-card .desc{
-            font-family:'Roboto Condensed',sans-serif;
-            font-size:12px;
-            font-weight:400;
-            letter-spacing:0.5px;
-            color:#8a7a6a;
-            line-height:1.5;
-        }
-        
-        .site-footer{
-            position:relative;
-            z-index:10;
-            text-align:center;
-            padding:40px 24px;
-            border-top:1px solid rgba(138,122,106,0.1);
-        }
-        .site-footer p{
-            font-family:'Roboto Condensed',sans-serif;
-            font-size:12px;
-            letter-spacing:1px;
-            color:#8a7a6a;
-        }
-        .site-footer a{
-            color:#dc2626;
-            text-decoration:none;
-            font-weight:700;
-        }
-        .site-footer a:hover{text-decoration:underline}
-        
-        @keyframes fadeInDown{
-            from{opacity:0;transform:translateY(-20px)}
-            to{opacity:1;transform:translateY(0)}
-        }
-        @keyframes fadeInUp{
-            from{opacity:0;transform:translateY(30px)}
-            to{opacity:1;transform:translateY(0)}
+
+        .content{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:60px 24px 80px}
+
+        /* Header */
+        .hdr{text-align:center;margin-bottom:60px}
+        .hdr-logo{width:80px;height:80px;margin:0 auto 20px;display:block}
+        .hdr h1{font-family:'Oswald',sans-serif;font-size:clamp(32px,6vw,52px);font-weight:700;line-height:1;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:12px}
+        .hdr h1 span{color:#DC2626}
+        .hdr p{font-size:13px;color:rgba(0,0,0,0.45);line-height:1.7;max-width:600px;margin:0 auto;text-transform:uppercase;letter-spacing:0.06em}
+
+        /* Tagline */
+        .tagline{text-align:center;margin-bottom:48px;padding:20px 0;border-top:1px solid rgba(0,0,0,0.08);border-bottom:1px solid rgba(0,0,0,0.08)}
+        .tagline p{font-family:'Oswald',sans-serif;font-size:clamp(16px,2.5vw,22px);font-weight:600;text-transform:uppercase;line-height:1.4;color:#0A0A0A}
+        .tagline p span{color:#DC2626}
+
+        /* FAQ Section */
+        .faq-s{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:16px;padding:40px 32px;margin-bottom:40px}
+        .faq-hdr{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+        .faq-hdr h2{font-family:'Oswald',sans-serif;font-size:clamp(28px,4vw,40px);font-weight:700;text-transform:uppercase;line-height:0.95;letter-spacing:-0.01em}
+        .faq-hdr h2 .red{color:#DC2626}
+        .faq-hdr h2 .stroke{-webkit-text-stroke:1.5px #0A0A0A;-webkit-text-fill-color:transparent}
+        .faq-hdr .badge{font-size:10px;letter-spacing:0.2em;color:rgba(0,0,0,0.35);text-transform:uppercase;padding-bottom:8px}
+
+        /* Category tabs */
+        .cat-tabs{display:flex;gap:0;margin-bottom:32px;border-bottom:1px solid rgba(0,0,0,0.1)}
+        .cat-tab{flex:1;padding:16px 12px;text-align:center;cursor:pointer;border:none;background:transparent;position:relative;transition:all 0.3s}
+        .cat-tab .label{font-family:'Oswald',sans-serif;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;color:rgba(0,0,0,0.4);display:block;transition:color 0.3s}
+        .cat-tab .price{font-size:10px;letter-spacing:0.1em;color:rgba(0,0,0,0.25);margin-top:4px;display:block;transition:color 0.3s}
+        .cat-tab::after{content:'';position:absolute;bottom:-1px;left:0;width:100%;height:3px;background:#DC2626;opacity:0;transition:opacity 0.3s}
+        .cat-tab:hover .label{color:#0A0A0A}
+        .cat-tab.active .label{color:#0A0A0A}
+        .cat-tab.active .price{color:rgba(0,0,0,0.45)}
+        .cat-tab.active::after{opacity:1}
+        .cat-tab:nth-child(1).active{background:rgba(58,107,46,0.04)}
+        .cat-tab:nth-child(2).active{background:rgba(107,90,74,0.04)}
+        .cat-tab:nth-child(3).active{background:rgba(26,26,26,0.04)}
+
+        /* Panels */
+        .panel{display:none}
+        .panel.active{display:block;animation:fadeIn 0.4s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+        /* FAQ items */
+        .fq-item{border-bottom:1px solid rgba(0,0,0,0.06);cursor:pointer;transition:all 0.3s;outline:none}
+        .fq-item:last-child{border-bottom:none}
+        .fq-item:hover{padding-left:8px;margin-left:-8px;background:rgba(220,38,38,0.02)}
+        .fq-h{display:flex;align-items:flex-start;gap:16px;padding:24px 0}
+        .fq-num{font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;color:rgba(0,0,0,0.08);flex-shrink:0;min-width:36px;text-align:right;transition:color 0.3s}
+        .fq-item:hover .fq-num{color:rgba(220,38,38,0.2)}
+        .fq-q{font-family:'Oswald',sans-serif;font-size:clamp(14px,2vw,17px);font-weight:600;text-transform:uppercase;line-height:1.35;color:#0A0A0A;flex:1;padding-top:2px}
+        .fq-arrow{width:20px;height:20px;position:relative;flex-shrink:0;margin-top:4px;transition:transform 0.35s}
+        .fq-arrow::before,.fq-arrow::after{content:'';position:absolute;background:rgba(0,0,0,0.2)}
+        .fq-arrow::before{width:10px;height:2px;top:50%;left:50%;transform:translate(-50%,-50%)}
+        .fq-arrow::after{width:2px;height:10px;top:50%;left:50%;transform:translate(-50%,-50%)}
+        .fq-item.open .fq-arrow{transform:rotate(45deg)}
+        .fq-item.open .fq-arrow::before,.fq-item.open .fq-arrow::after{background:#DC2626}
+
+        .fq-a{font-size:11px;font-weight:400;line-height:1.9;color:rgba(0,0,0,0.6);text-transform:uppercase;letter-spacing:0.04em;max-height:0;overflow:hidden;opacity:0;transition:all 0.5s;padding:0 0 0 52px}
+        .fq-item.open .fq-a{max-height:600px;opacity:1;padding-top:0;padding-bottom:24px}
+        .fq-a strong{font-weight:700;color:#0A0A0A}
+        .fq-a .eq-list{margin:8px 0;padding-left:0;list-style:none}
+        .fq-a .eq-list li{padding:4px 0;font-size:10px;color:rgba(0,0,0,0.5);border-bottom:1px solid rgba(0,0,0,0.04)}
+        .fq-a .eq-list li:last-child{border-bottom:none}
+        .fq-a .eq-list li strong{display:inline-block;min-width:140px;color:#0A0A0A}
+        .fq-a .meta{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+        .fq-a .meta-tag{font-size:9px;letter-spacing:0.12em;color:rgba(0,0,0,0.35);padding:3px 10px;background:rgba(0,0,0,0.03);border-radius:4px;text-transform:uppercase}
+        .fq-a .comps{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+        .fq-a .comp{font-size:10px;color:rgba(0,0,0,0.45);padding:5px 12px;background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.06);border-radius:20px;text-transform:uppercase;letter-spacing:0.04em}
+        .fq-a .comp a{color:#DC2626;font-weight:600}
+
+        /* CTA */
+        .cta{text-align:center;margin-top:48px;padding-top:40px;border-top:1px solid rgba(0,0,0,0.08)}
+        .cta h3{font-family:'Oswald',sans-serif;font-size:clamp(24px,4vw,40px);font-weight:700;text-transform:uppercase;line-height:1;margin-bottom:16px}
+        .cta h3 span{color:#DC2626}
+        .cta-btn{display:inline-block;padding:16px 36px;background:#0A0A0A;color:#fff;font-family:'Oswald',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:60px;transition:all 0.35s;margin:8px}
+        .cta-btn:hover{background:#DC2626;color:#fff;transform:translateY(-2px)}
+        .cta-btn.outline{background:transparent;color:#0A0A0A;border:2px solid #0A0A0A}
+        .cta-btn.outline:hover{background:#0A0A0A;color:#fff}
+
+        /* Footer */
+        footer{text-align:center;padding:40px 0;font-size:10px;letter-spacing:0.15em;color:rgba(0,0,0,0.3);text-transform:uppercase}
+        footer a{color:#DC2626;font-weight:600}
+
+        @media(max-width:768px){
+            .content{padding:40px 16px 60px}
+            .faq-s{padding:28px 20px}
+            .cat-tab .label{font-size:11px}
+            .fq-h{padding:18px 0}
+            .fq-num{font-size:22px;min-width:28px}
+            .fq-a{padding-left:44px;font-size:10px}
         }
     </style>
+<base target="_blank">
 </head>
 <body>
-    <div class="grain"></div>
-    
-    <div class="wall-wrap">
-        <div class="text-wall" id="textWall"></div>
-        
-        <div class="logo-center">
-            <img src="https://hellagood.pro/wp-content/uploads/2026/05/Transparent-Square-Logo-HGPRO.png" alt="HellaGoodPro — студия подкастов Москва" loading="eager">
+    <div class="wall-bg" id="textWall"></div>
+
+    <div class="content">
+
+        <!-- Header -->
+        <div class="hdr">
+            <img src="https://hellagood.pro/wp-content/uploads/2026/05/Transparent-Square-Logo-HGPRO.png" alt="HellaGoodPro" class="hdr-logo" loading="eager">
+            <h1>Как записать<br><span>подкаст</span></h1>
+            <p>3 подхода — от смартфона до выездного продакшна.<br>Сравнение цен, оборудования и результата.</p>
         </div>
-        
-        <div class="hero-content">
-            <h1>Гид по подкастам<br>в России</h1>
-            <p class="subtitle">Оборудование &middot; Софт &middot; Дистрибуция &middot; Монетизация</p>
-            <p class="soul">ПРОДАЛИ ДУШУ ЗА КАЧЕСТВО</p>
+
+        <!-- Tagline -->
+        <div class="tagline">
+            <p>Нет единого правильного способа.<br>Есть <span>ваш бюджет</span>, ваши сроки и ваш ожидаемый результат.</p>
         </div>
-        
-        <div class="cta-wrap">
-            <a class="cta-btn" href="https://hellagood.pro/studiya-podkastov-moskva">
-                <span class="accent">HellaGoodPro</span> — студия подкастов в Москве
-            </a>
+
+        <!-- FAQ Section: Approaches -->
+        <div class="faq-s">
+
+            <div class="faq-hdr">
+                <h2><span class="red">3</span> <span class="stroke">ПОДХОДА</span></h2>
+                <span class="badge">ВЫБЕРИТЕ СВОЙ УРОВЕНЬ</span>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="cat-tabs">
+                <button class="cat-tab active" data-cat="diy">
+                    <span class="label">СНЯТЬ САМОМУ</span>
+                    <span class="price">0 — 50 000 ₽</span>
+                </button>
+                <button class="cat-tab" data-cat="studio">
+                    <span class="label">СТУДИЯ МОСКВА</span>
+                    <span class="price">9 500 — 30 000 ₽</span>
+                </button>
+                <button class="cat-tab" data-cat="location">
+                    <span class="label">ВЫЕЗДНОЙ ПРОДАКШН</span>
+                    <span class="price">от 100 000 ₽</span>
+                </button>
+            </div>
+
+            <!-- Panel 1: DIY -->
+            <div class="panel active" data-panel="diy">
+
+                <div class="fq-item open">
+                    <div class="fq-h">
+                        <span class="fq-num">01</span>
+                        <div class="fq-q">ЧТО КУПИТЬ, ЧТОБЫ СНЯТЬ ПОДКАСТ НА ТЕЛЕФОН?</div>
+                        <div class="fq-arrow"></div>
+                    </div>
+                    <div class="fq-a">
+                        <strong>ДВА ЧЕЛОВЕКА В КАДРЕ = 2 ТЕЛЕФОНА (УЖЕ ЕСТЬ). ЧТО КУПИТЬ:</strong>
+                        <ul class="eq-list">
+                            <li><strong>2 петлички</strong>HOLLYLAND Lark M2 Combo — ~11 000 ₽</li>
+                            <li><strong>2 штатива</strong>Лёгкие для телефона — ~3 000 ₽</li>
+                            <li><strong>Софт</strong>DaVinci Resolve — бесплатно</li>
+                            <li><strong>Локация</strong>Тихое помещение с нейтральной акустикой или тихий парк</li>
+                        </ul>
+                        <strong>ПОЧЕМУ HOLLYLAND LARK M2:</strong> встроенное шумоподавление, автоматическое подключение, запись напрямую в петличку (резервный трек), ветрозащита в комплекте. Дешевле Rode Wireless GO II при схожем качестве.
+                        <div class="meta">
+                            <span class="meta-tag">Бюджет: ~14 000 ₽</span>
+                            <span class="meta-tag">Время на выпуск: 6-15 часов</span>
+                            <span class="meta-tag">Качество: базовое</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fq-item">
+                    <div class="fq-h">
+                        <span class="fq-num">02</span>
+                        <div class="fq-q">КАКОЙ РЕЗУЛЬТАТ ПОЛУЧУ, ЗАПИСАВ САМОСТОЯТЕЛЬНО?</div>
+                        <div class="fq-arrow"></div>
+                    </div>
+                    <div class="fq-a">
+                        <strong>ЗВУК:</strong> при правильной акустике помещения — чистый, HOLLYLAND Lark M2 с шумоподавлением справляется на уровне студийных петличек. На улице — ветер и фон, петлички справляются частично. <strong>КАРТИНКА:</strong> современные iPhone и флагманы Android снимают в 4K с HDR — при правильном свете и обработке в DaVinci Resolve результат может удивить. Дневной свет у окна — ваш главный союзник. <strong>МОНТАЖ:</strong> первый выпуск — 6-10 часов в DaVinci Resolve, к пятому — 3-4 часа. Это навык, как вождение. <strong>ЧЕСТНО:</strong> при должном vision и обработке результат может быть выше ожиданий. Студия даёт гарантированное качество с первого кадра, DIY — требует времени на обучение, но потолок зависит только от вас.
+                    </div>
+                </div>
+
+                <div class="fq-item">
+                    <div class="fq-h">
+                        <span class="fq-num">03</span>
+                        <div class="fq-q">DIY ИЛИ СТУДИЯ — СКОЛЬКО СТОИТ ОДИН ВЫПУСК?</div>
+                        <div class="fq-arrow"></div>
+                    </div>
+                    <div class="fq-a">
+                        <strong>DIY (один выпуск):</strong> оборудование уже куплено (~14 000 ₽ разовая трата) + 1 час съёмки + 3-4 часа монтажа в DaVinci Resolve (если уже умеете) или 6-10 часов (если первый раз). <strong>Студия HellaGoodPro (один выпуск):</strong> от 9 500 ₽ (1 час съёмки + линейный монтаж + 2 камеры), готовый файл через 2-24 часа. <strong>DIY дешевле в деньгах.</strong> Студия экономит время. Если у вас есть 4-5 свободных часов на выпуск и интерес к монтажу — DIY открывает двери. Если хотите сфокусироваться на контенте и гостях — студия убирает технические заботы. Выбор не между хорошим и плохим — между временем и деньгами.
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Panel 2: Studio -->
+            <div class="panel" data-panel="studio">
+
+                <div class="fq-item open">
+                    <div class="fq-h">
+                        <span class="fq-num">04</span>
+                        <div class="fq-q">ЧТО ВХОДИТ В СТОИМОСТЬ АРЕНДЫ СТУДИИ?</div>
+                        <div class="fq-arrow"></div>
+                    </div>
+                    <div class="fq-a">
+                        <strong>БАЗОВЫЙ КОМПЛЕКТ В ЛЮБОЙ СТУДИИ МОСКВЫ:</strong>
+                        <ul class="eq-list">
+                            <li><strong>Микрофоны</strong>Shure SM7B (2 шт) — золотой стандарт подкастов</li>
+                            <li><strong>Камеры</strong>Panasonic GH5 (2 шт) — 4K 10-bit</li>
+                            <li><strong>Свет</strong>Aputure Amaran — профессиональная схема</li>
+                            <li><strong>Микшер</strong>RØDE RØDECaster Pro II — гейты, эффекты</li>
+                            <li><strong>Live-монтаж</strong>Blackmagic ATEM — переключение камер</li>
+                            <li><strong>Режиссёр</strong>Включён в стоимость</li>
+                        </ul>
+                        <strong>ПОЧЕМУ ИМЕННО SHURE SM7B:</strong> динамический микрофон глушит посторонние шумы, даёт "радиоголос" без обработки. Используют Joe Rogan, Lex Fridman, все топовые подкастеры. <strong>РЕЖИССЁР И МОНТАЖ ВХОДЯТ В ЦЕНУ</strong> — нет скрытых платежей.
+                        <div class="comps">
+                            <span class="comp"><a href="https://hellagood.pro/">HellaGoodPro</a> — только съёмка 2 камеры от 4 000 ₽/час</span>
+                            <span class="comp">Boltologiya</span>
+                            <span class="comp">Либо/Либо</span>
+                            <span class="comp">Red Barn</span>
+                            <span class="comp">Hifistudio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fq-item">
+                    <div class="fq-h">
+                        <span class="fq-num">05</span>
+                        <div class="fq-q">СКОЛЬКО СТОИТ ОДИН ВЫПУСК ПОДКАСТА В СТУДИИ?</div>
+                        <div class="fq-arrow"></div>
+                    </div>
+                    <div class="fq-a">
+                        <strong>ФОРМУЛА: ЧАСЫ + КАМЕРЫ + ОПЦИИ.</strong> Минимум — от 9 500 ₽ за 1 час съёмки (2 камеры, линейный монтаж). Точная цена зависит от количества часов, камер и опций — <a href="https://hellagood.pro/podkast-cena/">калькулятор на сайте</a> считает за 60 секунд. <strong>СКИДКА 15%</strong> при 4 съёмках в месяц. <strong>В СТОИМОСТЬ УЖЕ ВХОДЯТ:</strong> режиссёр, свет, звук, live-монтаж. Нет скрытых платежей.
+                        <div class="meta">
+                            <span class="meta-tag">Минимум: 9 500 ₽</span>
+                            <span class="meta-tag">Калькулятор: точный расчёт</span>
+                            <span class="meta-tag">Монтаж: включён</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fq-item">
+                    <div class="fq-h">
+                        <span class="fq-num">06</span>
+                        <div class="fq-q">ПОЧЕМУ HELLAGOODPRO, А НЕ ДРУГАЯ СТУДИЯ?</div>
+                        <div class="fq-arrow"></div>
+                    </div>
+                    <div class="fq-a">
+                        <strong>250+ ВЫПУСКОВ ЗА ПРОШЛЫЙ ГОД.</strong> ВЫ ОБЕСПЕЧИВАЕТЕ ГЕНИАЛЬНОСТЬ СОДЕРЖАНИЯ. МЫ ОБЕСПЕЧИВАЕМ БЕЗУПРЕЧНОСТЬ ВИЗУАЛЬНОЙ И АУДИАЛЬНОЙ ФОРМ. <strong>3 ВИЗУАЛА:</strong> #ЧЕРНОЕНАЧЕРНОМ, #БЕЛОЕНАБЕЛОМ, #КРАСНОЕНАКРАСНОМ. <strong>LIVE-МОНТАЖ:</strong> уходите с готовым выпуском. <strong>ТОЛЬКО СЪЁМКА 2 КАМЕРЫ — ОТ 4 000 ₽/ЧАС.</strong> С линейным монтажом — от 9 500 ₽. Точный расчёт в <a href="https://hellagood.pro/podkast-cena/">калькуляторе</a>. <strong>ИСХОДНИКИ ЧЕРЕЗ 3 ЧАСА.</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Panel 3: Location -->
+            <div class="panel" data-panel="location">
+
+                <div class="fq-item open">
+                    <div class="fq-h">
+                        <span class="fq-num">07</span>
+                        <div class="fq-q">ЧТО ТАКОЕ ВЫЕЗДНОЙ ПРОДАКШН И КОГДА ОН НУЖЕН?</div>
+                        <div class="fq-arrow"></div>
+                    </div>
+                    <div class="fq-a">
+                        <strong>КОМАНДА 3-4 ЧЕЛОВЕК ПРИЕЗЖАЕТ НА ВАШУ ЛОКАЦИЮ.</strong> Когда формат требует атмосферу места: интервью с CEO в его офисе, подкаст с конференции, съёмка в ресторане, интервью "как у Собчак" — когда гость не может приехать в студию. <strong>ВАЖНО:</strong> это не "привезти студию в кейсах". Это создание кинематографического качества на неподготовленной площадке. Команда работает с тем, что есть — и делает это безупречно.
+                    </div>
+                </div>
+
+                <div class="fq-item">
+                    <div class="fq-h">
+                        <span class="fq-num">08</span>
+                        <div class="fq-q">ЧТО ВХОДИТ В ВЫЕЗДНОЙ ПРОДАКШН?</div>
+                        <div class="fq-arrow"></div>
+                    </div>
+                    <div class="fq-a">
+                        <strong>КОМАНДА:</strong> режиссёр, оператор, звукорежиссёр, ассистент. <strong>ОБОРУДОВАНИЕ:</strong>
+                        <ul class="eq-list">
+                            <li><strong>Камеры</strong>Panasonic GH5 / Sony A7S III — 4K, низкий свет</li>
+                            <li><strong>Микрофоны</strong>Shure SM7B + радиопетлички Rode</li>
+                            <li><strong>Свет</strong>Aputure 300D + софтбоксы — вывозной комплект</li>
+                            <li><strong>Монтаж</strong>Live на Atomos / Blackmagic</li>
+                            <li><strong>Фон</strong>По запросу — под стиль локации</li>
+                        </ul>
+                        <strong>РЕЗУЛЬТАТ:</strong> максимальное качество + уникальная атмосфера места. Готовый материал — от 4 часов. Цветокоррекция и постпродакшн — включены.
+                    </div>
+                </div>
+
+                <div class="fq-item">
+                    <div class="fq-h">
+                        <span class="fq-num">09</span>
+                        <div class="fq-q">СКОЛЬКО СТОИТ ВЫЕЗДНАЯ СЪЁМКА?</div>
+                        <div class="fq-arrow"></div>
+                    </div>
+                    <div class="fq-a">
+                        <strong>ВЫЕЗДНОЙ ПРОДАКШН</strong> — от 100 000 ₽. Расчёт индивидуальный: зависит от локации, количества гостей, сложности монтажа. <strong>РАСЧЁТ ИНДИВИДУАЛЬНЫЙ</strong> — зависит от локации, количества гостей, сложности монтажа. Оставьте заявку — рассчитаем за 10 минут. <strong>ДЛЯ СРАВНЕНИЯ:</strong> студийная съёмка аналогичного объёма обойдётся в 2-3 раза дешевле. Выездной продакшн выбирают не ради экономии, а ради невозможности повторить атмосферу в студии.
+                        <div class="meta">
+                            <span class="meta-tag">От 100 000 ₽</span>
+                            <span class="meta-tag">Расчёт индивидуальный</span>
+                            <span class="meta-tag">Команда: 3-4 человека</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h3>ОПРЕДЕЛИЛИСЬ С <span>ПОДХОДОМ?</span></h3>
+            <a href="https://hellagood.pro/podkast-cena/" class="cta-btn">Рассчитать стоимость в студии</a>
+            <a href="https://hellagood.pro/videosemka-meropriyatiy/" class="cta-btn outline">Заказать выездной продакшн</a>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Материал подготовлен <a href="https://hellagood.pro/">HellaGoodPro</a> — студия подкастов в Москве<br>250+ выпусков · 3 визуала · Выездные съёмки</p>
+        </footer>
+
     </div>
-    
-    <div class="links-section">
-        <h2>Разделы гида</h2>
-        <div class="link-grid">
-            <a class="link-card" href="https://hellagood.pro/chto-takoe-podkast">
-                <div class="label">Что такое подкаст</div>
-                <div class="desc">История, определение, форматы, типы контента</div>
-            </a>
-            <a class="link-card" href="https://hellagood.pro/podkast-cena">
-                <div class="label">Сколько стоит подкаст</div>
-                <div class="desc">Калькулятор стоимости записи и монтажа</div>
-            </a>
-            <a class="link-card" href="https://hellagood.pro/oborudovanie-dlya-podkasta">
-                <div class="label">Оборудование</div>
-                <div class="desc">Микрофоны, интерфейсы, камеры, свет, софт</div>
-            </a>
-            <a class="link-card" href="https://hellagood.pro/studiya-podkastov-moskva">
-                <div class="label">Студия в Москве</div>
-                <div class="desc">Запись под ключ, аренда, цены, бронь</div>
-            </a>
-        </div>
-    </div>
-    
-    <footer class="site-footer">
-        <p>Материал подготовлен <a href="https://hellagood.pro">HellaGoodPro</a> — студия подкастов в Москве &middot; 250+ выпусков</p>
-    </footer>
-    
+
     <script>
-        const messages = [
-            {t:"HELLAGOODPRO — ЧЕРТОВСКИ КРУТАЯ СТУДИЯ ПОДКАСТОВ В МОСКВЕ",k:"КРУТАЯ"},
-            {t:"ЧТО ЕСЛИ СЕГОДНЯ — ТОТ САМЫЙ ДЕНЬ?",k:"ТОТ САМЫЙ"},
-            {t:"ЧТО ЕСЛИ ВЫ — ГЕНИАЛЬНЫ, А МЫ — БЕЗУПРЕЧНЫ?",k:"ГЕНИАЛЬНЫ"},
-            {t:"ЧТО ЕСЛИ МЫ ПРЕВРАЩАЕМ ВАШУ ЭКСПЕРТНОСТЬ В БЕЗУПРЕЧНЫЙ ВИЗУАЛ?",k:"ВИЗУАЛ"},
-            {t:"ЧТО ЕСЛИ ГОТОВЫЙ ВЫПУСК У ВАС НА РУКАХ ЧЕРЕЗ 2–24 ЧАСА?",k:"2–24"},
-            {t:"ЧТО ЕСЛИ АУДИТОРИЯ РАСТЁТ ПОТОМУ ЧТО ВАС СТАЛО ЛУЧШЕ СЛЫШНО?",k:"ЛУЧШЕ"},
-            {t:"ЧТО ЕСЛИ ВЫ КОНТРОЛИРУЕТЕ КАЖДЫЙ РУБЛЬ В СМЕТЕ?",k:"СМЕТЕ"},
-            {t:"ЧТО ЕСЛИ РЕЖИССЁР И МОНТАЖ УЖЕ ВХОДЯТ В ЦЕНУ?",k:"ВХОДЯТ"},
-            {t:"НИКАКИХ СКРЫТЫХ ПЛАТЕЖЕЙ. ЦЕНА ПРОЗРАЧНА, КАК ЛЁД БАЙКАЛА.",k:"ПРОЗРАЧНА"},
-            {t:"ВАШ БЮДЖЕТ = ТОЛЬКО ЧАСЫ + КАМЕРЫ.",k:"ЧАСЫ"},
-            {t:"ПРАВИЛО 15 МИНУТ В ВАШУ ПОЛЬЗУ: 2 Ч 15 МИН = 2 Ч.",k:"15 МИНУТ"},
-            {t:"БАЗОВЫЙ КОМПЛЕКТ — АБСОЛЮТНЫЙ МИНИМУМ ДЛЯ МАКСИМУМА КАЧЕСТВА.",k:"МАКСИМУМА"},
-            {t:"МЫР ПОЛОН ИСТОРИЙ. HELLAGOODPRO — ИДЕАЛЬНЫЙ ПРОВОДНИК.",k:"ПРОВОДНИК"},
-            {t:"ВЫ ТВОРИТЕ ИСТОРИЮ. МЫ — БЕЗУПРЕЧНЫЙ ИНСТРУМЕНТ.",k:"ИНСТРУМЕНТ"},
-            {t:"ВЫ — НА СУТИ. МЫ — НА СВЕТЕ, КАДРЕ, ЗВУКЕ.",k:"СВЕТЕ"},
-            {t:"ВАША ЗАДАЧА — БЫТЬ СОБОЙ. НАША — ЧТОБЫ РЕЗУЛЬТАТ БЫЛ ЧЕРТОВСКИ ВКУСНО.",k:"ВКУСНО"},
-            {t:"ЧТО ЕСЛИ ХОЛСТ ПОД ВАШЕ ВИДЕО УЖЕ ГОТОВ?",k:"ГОТОВ"},
-            {t:"ВРЕМЯ ТВОРИТЬ ИСТОРИЮ. ЗАНАВЕС.",k:"ЗАНАВЕС"},
-            {t:"HELLAGOODPRO. МОСКВА. ВАША СТУДИЯ.",k:"СТУДИЯ"},
-            {t:"ЧТО ЕСЛИ ВСЕ ЭТО В ПРЯМОМ ЭФИРЕ?",k:"ПРЯМОМ"}
+        // Text wall
+        const msgs=[
+            {t:"DIY: ТЕЛЕФОН + RODE WIRELESS GO II + ШТАТИВ",k:"DIY"},
+            {t:"СТУДИЯ: SHURE SM7B + PANASONIC GH5 + RODECASTER PRO II",k:"STUDIO"},
+            {t:"ВЫЕЗД: SONY A7S III + APUTURE 300D + КОМАНДА",k:"ВЫЕЗД"},
+            {t:"HELLAGOODPRO — СТУДИЯ ПОДКАСТОВ МОСКВА",k:"HELLAGOODPRO"},
+            {t:"3 ПОДХОДА — DIY / СТУДИЯ / ВЫЕЗД",k:"3 ПОДХОДА"},
+            {t:"RØDE RØDECASTER PRO II — АВТОМАТИЧЕСКИЕ ГЕЙТЫ",k:"ГЕЙТЫ"},
+            {t:"LIVE-МОНТАЖ — ГОТОВЫЙ ВЫПУСК СРАЗУ",k:"LIVE"},
+            {t:"250+ ВЫПУСКОВ С 2019 ГОДА",k:"250+"},
+            {t:"BOLTOLOGIYA / ЛИБОЛИБО / RED BARN / HIFISTUDIO",k:"МОСКВА"},
+            {t:"ОСТОРОЖНО СОБЧАК — ВЫЕЗДНОЙ ФОРМАТ",k:"СОБЧАК"},
+            {t:"ЦЕНА ОТ 9 500 ₽ — КАЛЬКУЛЯТОР НА САЙТЕ",k:"9 500 ₽"}
         ];
-        
-        function highlight(text, kw){
-            return text.replace(kw, '<span class="accent">'+kw+'</span>');
+        function hl(t,k){return t.replace(k,'<span class="accent">'+k+'</span>')}
+        const wall=document.getElementById('textWall');
+        for(let i=0;i<15;i++){
+            const s=(i*2)%msgs.length;
+            const p=[];
+            for(let j=0;j<2;j++){const m=msgs[(s+j)%msgs.length];p.push(hl(m.t,m.k))}
+            const line=document.createElement('div');line.className='wall-line';line.innerHTML=(p.join('  &bull;  ')+'  &bull;  ').repeat(4);wall.appendChild(line);
         }
-        
-        const wall = document.getElementById('textWall');
-        for(let i = 0; i < 18; i++){
-            const start = (i * 2) % messages.length;
-            const phrases = [];
-            for(let j = 0; j < 2; j++){
-                const m = messages[(start + j) % messages.length];
-                phrases.push(highlight(m.t, m.k));
-            }
-            const segment = phrases.join('  &bull;  ') + '  &bull;  ';
-            const line = document.createElement('div');
-            line.className = 'wall-line';
-            line.innerHTML = segment.repeat(4);
-            wall.appendChild(line);
-        }
+
+        // Tabs
+        document.querySelectorAll('.cat-tab').forEach(tab=>{
+            tab.addEventListener('click',()=>{
+                document.querySelectorAll('.cat-tab').forEach(t=>t.classList.remove('active'));
+                tab.classList.add('active');
+                const cat=tab.dataset.cat;
+                document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+                document.querySelector('.panel[data-panel="'+cat+'"]').classList.add('active');
+            });
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.fq-item').forEach(item=>{
+            item.addEventListener('click',()=>{
+                const panel=item.closest('.panel');
+                panel.querySelectorAll('.fq-item').forEach(s=>{if(s!==item)s.classList.remove('open')});
+                item.classList.toggle('open');
+            });
+        });
     </script>
 </body>
 </html>
